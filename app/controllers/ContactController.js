@@ -25,9 +25,7 @@ class ContactController {
   }
 
   async update(req, res) {
-    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-    });
+    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body);
 
     return res.json(contact);
   }

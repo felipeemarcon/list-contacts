@@ -1,5 +1,15 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/contacts", {
-  useNewUrlParser: true
-});
+const uri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+
+const mongoOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+};
+
+const connectDb = () => {
+  return mongoose.connect(uri, mongoOptions);
+};
+
+module.exports = { connectDb };

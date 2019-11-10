@@ -13,6 +13,9 @@ const ContactSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  address: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now

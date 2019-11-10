@@ -1,17 +1,23 @@
-const express = require("express");
-const mongoose = require("mongoose");
+require("dotenv").config();
 
+const express = require("express");
 const app = express();
-const server = require("http").Server(app);
 
 app.use(express.json());
 app.use(require("./routes"));
 
-mongoose.connect("mongodb://localhost:27017/contacts", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// SERVER AND DB
+const server = require("http").Server(app);
+const { connectDb } = require("./config/database");
 
-server.listen(3000, () => {
-  console.log("Server is up!");
-});
+connectDb()
+  .then(async () => {
+    server.listen(process.env.APP_PORT, () => {
+      console.log(
+        `Server is up on port ${process.env.APP_PORT} on the ${process.env.APP_HOST}!`
+      );
+    });
+  })
+  .catch(err => {
+    console.log(err);
+  });
