@@ -19,7 +19,9 @@ class ContactController {
   }
 
   async show(req, res) {
-    const contact = await Contact.findById(req.params.id);
+    const contact = await Contact.findById(req.params.id).populate({
+      path: "avatar"
+    });
 
     return res.json(contact);
   }
