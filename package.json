@@ -12,13 +12,16 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "cross-env": "^6.0.3",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "nodemon app/server.js",
-    "test": "jest --env=jsdom"
+    "start": "node app/server.js",
+    "dev": "nodemon app/server.js --ignore __tests__",
+    "test": "NODE_ENV=test jest --detectOpenHandles"
   },
   "husky": {
     "hooks": {
