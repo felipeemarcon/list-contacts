@@ -1,12 +1,22 @@
+require("dotenv").config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+});
+
 const express = require("express");
 const path = require("path");
+const { connectDb } = require("./config/database");
 
 class AppController {
   constructor() {
     this.express = express();
 
+    this.database();
     this.middlewares();
     this.routes();
+  }
+
+  database() {
+    connectDb();
   }
 
   middlewares() {
