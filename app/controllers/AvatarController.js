@@ -13,8 +13,6 @@ class AvatarController {
 
       contact.avatar = avatar;
 
-      console.log(contact);
-
       await contact.save();
 
       return res.json(avatar);
